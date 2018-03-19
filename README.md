@@ -29,5 +29,5 @@ key  = MyTrackName
 ## Usage
 
 Place holder.
-![demo window](img/effectwindow.png)
+![demo window](img/effectwindow2.png)
 ![demo color](img/colorcoding.png)
