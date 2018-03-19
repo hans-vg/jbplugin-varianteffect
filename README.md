@@ -28,5 +28,6 @@ key  = MyTrackName
                 
 ## Usage
 
-Place holder. Need a demo image
-![demo image](img/demo_image.png)
+Place holder.
+![demo window](img/effectwindow.png)
+![demo color](img/colorcoding.png)
