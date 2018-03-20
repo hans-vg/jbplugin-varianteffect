@@ -34,25 +34,12 @@ define([
                     }), f
                 );
                 fmt('Length', Util.addCommas(f.get('end') - f.get('start')) + ' bp', f);
-                ann = f.get('ANN');
-                annText = "";
-                /*
-                console.log(typeof ann);
-                console.log(typeof annText);
-                var bar;
-                for (bar in ann) {
-                	console.log("Ann has property " + bar);
-                }
-                var annArray = ann.values;
-                console.log(typeof annArray);
-                */
-                var annInputText = ann.toString();
-                console.log(annInputText);
-                var annArray = annInputText.split(",");
-                for (var i = 0, len = annArray.length; i < len; i++) {
+                var ann = (f.get('ANN')||{}).values;
+                var annText = "";
+                for (var i = 0, len = ann.length; i < len; i++) {
                     counter = i + 1;
 
-                    var dataSplit = annArray[i].split("|");
+                    var dataSplit = ann[i].split("|");
                     var eff_type = dataSplit[1];
                     var severity = dataSplit[2];
                     var transcript_name = dataSplit[6];
