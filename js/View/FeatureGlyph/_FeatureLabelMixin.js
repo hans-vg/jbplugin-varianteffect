@@ -1,4 +1,4 @@
-define( "MyEffectPlugin/View/FeatureGlyph/_FeatureLabelMixin", [
+define( "VariantEffectPlugin/View/FeatureGlyph/_FeatureLabelMixin", [
             'dojo/_base/declare',
             'dojo/_base/lang',
             'JBrowse/View/_FeatureDescriptionMixin'
@@ -18,6 +18,7 @@ return declare( FeatureDescriptionMixin,  {
      * the track's maxFeatureGlyphExpansion limit.
      */
     makeFeatureLabel: function( feature, fRect ) {
+        console.log("Test log _featureLabelMixin");
         var text = this.getFeatureLabel( feature );
         if( ! text )
             return null;
@@ -38,6 +39,7 @@ return declare( FeatureDescriptionMixin,  {
         if( ! text )
             return null;
         text = ''+text;
+        console.log("Test log _featureLabelMixin");
         var font = this.getStyle( feature, 'text2Font' );
         var l = fRect ? this.makeBottomOrTopLabel( text, font, fRect ) : this.makePopupLabel( text, font );
         //l.fill = this.getStyle( feature, 'text2Color' );

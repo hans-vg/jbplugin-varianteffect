@@ -1,4 +1,4 @@
-define("MyEffectPlugin/View/FeatureGlyph/Box", [
+define("VariantEffectPlugin/View/FeatureGlyph/Box", [
            'dojo/_base/declare',
            'dojo/_base/array',
            'dojo/_base/lang',
@@ -246,6 +246,7 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
 
     // feature label
     renderLabel: function( context, fRect ) {
+        console.log("Test log Box.js");
         if( fRect.label ) {
             context.font = fRect.label.font;
             context.fillStyle = fRect.label.fill;
