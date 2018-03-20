@@ -1,40 +1,62 @@
-/**
- * Just an HTMLFeatures track that uses the VariantDetailsMixin to
- * provide a variant-specific feature detail dialog.
- */
+define([
+        'dojo/_base/declare',
+        'dojo/promise/all',
+        'JBrowse/Util',
+        'JBrowse/View/Track/CanvasVariants',
+        'VariantEffectPlugin/View/Track/_VariantDetailMixin'
+    ],
 
-define( "VariantEffectPlugin/View/Track/CanvasEffectVariants", [
-             'dojo/_base/declare',
-             'dojo/promise/all',
-             'JBrowse/Util',
-             'JBrowse/View/Track/CanvasFeatures',
-             'VariantEffectPlugin/View/Track/_VariantDetailMixin'
-         ],
+    function(
+        declare,
+        all,
+        Util,
+        CanvasVariants,
+        VariantDetailsMixin
+    ) {
+        var variantColorCoding = function(feature) {
+            /* console.log(feature); */
+            var value = feature.get('ANN');
+            if (typeof value !== 'undefined') {
+                var data = value.values;
+                for (var i = 0, len = data.length; i < len; i++) {
+                    counter = i + 1;
+                    /* console.log(value[i]); */
+                    var dataSplit = data[i].split("|");
+                    var eff_type = dataSplit[1];
+                    if (eff_type === "stop_gained") {
+                        return '#FF0000';
+                    } else if (eff_type === "splice_donor_variant") {
+                        return '#FF0000';
+                    } else if (eff_type === "splice_acceptor_variant") {
+                        return '#FF0000';
+                    } else if (eff_type === "missense_variant") {
+                        return 'purple';
+                    } else if (eff_type === "synonymous_variant") {
+                        return '#00FF2F';
+                    }
+                }
+                return 'blue'
+            } else {
+                return 'blue'
+            }
+        }
 
-         function(
-             declare,
-             all,
-             Util,
-             CanvasFeatures,
-             VariantDetailsMixin
-         ) {
-return declare( [ CanvasFeatures, VariantDetailsMixin ], {
 
-    _defaultConfig: function() {
-        return Util.deepUpdate(
-            dojo.clone( this.inherited(arguments) ),
-            {
-                style: { color: 'green' }
-            });
-    },
 
-    _trackMenuOptions: function() {
-        return all([ this.inherited(arguments), this._variantsFilterTrackMenuOptions() ])
-            .then( function( options ) {
-                       var o = options.shift();
-                       options.unshift( { type: 'dijit/MenuSeparator' } );
-                       return o.concat.apply( o, options );
-                   });
-    }
-});
-});
+        return declare([CanvasVariants, VariantDetailsMixin], {
+
+            _defaultConfig: function() {
+                return Util.deepUpdate(
+                    dojo.clone(this.inherited(arguments)), {
+                        style: {
+                            text2Color: variantColorCoding,
+                            color: variantColorCoding
+                        }
+                    });
+            },
+
+        });
+    });
+
+
+
