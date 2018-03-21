@@ -33,7 +33,8 @@ Then, in your track configuration, use the following example block:
 ## Usage
 
 ![demo window](img/effectwindow2.png)
+![demo zoomedout](img/zoomedout.png)
 ![demo color](img/colorcoding.png)
 
-Each variant in the loaded VCF file that has the 'ANN' field in the last column will be parsed for color coded effects in the Browser view. It will also 
-display the Variant Effect information in human-readable format in the Info Window box when a variant is clicked on in the Browser view.
+Each variant in the loaded VCF file that has the 'ANN' field in the last column will be parsed to display the Variant Effect information in human-readable format in the Info Window box when a variant is clicked 
+in the Browser view. It also changes the default coloring of the Zoomed Out view to be color coded, as well as when you zoom in.
