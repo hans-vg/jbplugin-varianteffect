@@ -13,7 +13,7 @@ function(
             console.log('VariantEffectPlugin plugin starting');
             browser.registerTrackType({
 				label: 'CanvasEffectVariants',
-                type: 'VariantEffectPlugin/View/Track/CanvasEffectVariant'
+                type: 'VariantEffectPlugin/View/Track/CanvasEffectVariants'
             });
         }
     });
