@@ -26,6 +26,7 @@ Then, in your track configuration, use the following example block:
     urlTemplate    = vcf_files/mysample.vcf.gz
     tbiUrlTemplate = vcf_files/mysample.vcf.gz.tbi
     maxHeight = 1000
+    unsafePopup = True
     category = Varietal SNPs 
     key  = MyTrackName
 
