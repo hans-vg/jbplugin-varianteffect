@@ -25,9 +25,11 @@ define([
                     var eff_type = dataSplit[1];
                     if (eff_type === "stop_gained") {
                         return '#FF0000';
-                    } else if (eff_type === "splice_donor_variant") {
+                    } else if (eff_type.indexOf("splice_donor_variant") !== -1) {
                         return '#FF0000';
-                    } else if (eff_type === "splice_acceptor_variant") {
+                    } else if (eff_type.indexOf("splice_acceptor_variant") !== -1) {
+                        return '#FF0000';
+                    } else if (eff_type.indexOf("frameshift_variant") !== -1) {
                         return '#FF0000';
                     } else if (eff_type === "missense_variant") {
                         return 'purple';
