@@ -59,6 +59,9 @@ define([
                     if (aa_change != "") {
                         annText += "<br>Amino acid change = " + aa_change;
                     }
+                    if (sift != "") {
+                        annText += "<br>SIFT score = " + aa_change;
+                    }
                     annText += "<br>";
 
                 }
