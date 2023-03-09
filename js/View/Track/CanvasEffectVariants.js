@@ -36,9 +36,12 @@ define([
                             // "Allele|Consequence|IMPACT|SYMBOL|Gene|Feature_type|Feature|BIOTYPE|EXON|INTRON|HGVSc|HGVSp|cDNA_position|CDS_position|Protein_position|Amino_acids|Codons|Existing_variation|DISTANCE|STRAND|FLAGS|SYMBOL_SOURCE|HGNC_ID|SIFT"
                             // ;CSQ=T|missense_variant|MODERATE||TraesCS1A02G001800|Transcript|TraesCS1A02G001800.1|protein_coding|1/2||||192|56|19|A/V|gCc/gTc|||1||||tolerated_low_confidence(0.29)
                             // get the sift score
-                            let regExp = /\(([^)]+)\)/; // get the string in parentheses
-                            let sift = regExp.exec(dataSplit[dataSplit.length - 1])[1];
-                            if (sift < 0.05) {return "#d30085"}
+                            // let regExp = /\(([^)]+)\)/; // get the string in parentheses
+                            // let sift = regExp.exec(dataSplit[dataSplit.length - 1])[1];
+                            // if (sift < 0.05) {return "#d30085"}
+                            let sift = dataSplit[dataSplit.length - 1];
+                            if (sift.includes("deleterious")) {return "#ff9a00"}
+                            
                         }
                         return 'purple';
                     } else if (eff_type === "synonymous_variant") {
