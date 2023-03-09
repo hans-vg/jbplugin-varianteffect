@@ -34,7 +34,7 @@ define([
                     }), f
                 );
                 fmt('Length', Util.addCommas(f.get('end') - f.get('start')) + ' bp', f);
-                var ann = (f.get('ANN')||{}).values;
+                var ann = (f.get('ANN')||f.get('CSQ')||{}).values;
                 var annText = "";
                 for (var i = 0, len = ann.length; i < len; i++) {
                     counter = i + 1;
@@ -43,7 +43,12 @@ define([
                     var eff_type = dataSplit[1];
                     var severity = dataSplit[2];
                     var transcript_name = dataSplit[6];
-                    var aa_change = dataSplit[10];
+                    var aa_change = dataSplit[10]; // this is from snpEff vcf
+                    var sift = ""; // SIFT score
+                    if (dataSplit.length > 16) {
+                        aa_change = dataSplit[15].replace('/', dataSplit[14]); // CSQ default from VEP
+                        sift = dataSplit[dataSplit.length - 1];
+                    }
                     annText += "<b>SnpEffect_" + counter + ":</b><br>Mutation Effect = " + eff_type;
                     if (transcript_name != "") {
                         annText += "<br>Transcript = " + transcript_name;
@@ -53,6 +58,9 @@ define([
                     }
                     if (aa_change != "") {
                         annText += "<br>Amino acid change = " + aa_change;
+                    }
+                    if (sift != "") {
+                        annText += "<br>SIFT score = " + sift;
                     }
                     annText += "<br>";
 

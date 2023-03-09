@@ -15,29 +15,21 @@ define([
     ) {
         var variantColorCoding = function(feature) {
             /* console.log(feature); */
-            var value = feature.get('ANN');
+            var value = feature.get('ANN')||feature.get('CSQ');
             if (typeof value !== 'undefined') {
                 var data = value.values;
-                for (var i = 0, len = data.length; i < len; i++) {
-                    counter = i + 1;
-                    /* console.log(value[i]); */
-                    var dataSplit = data[i].split("|");
-                    var eff_type = dataSplit[1];
-                    if (eff_type === "stop_gained") {
-                        return '#FF0000';
-                    } else if (eff_type.indexOf("splice_donor_variant") !== -1) {
-                        return '#FF0000';
-                    } else if (eff_type.indexOf("splice_acceptor_variant") !== -1) {
-                        return '#FF0000';
-                    } else if (eff_type.indexOf("frameshift_variant") !== -1) {
-                        return '#FF0000';
-                    } else if (eff_type === "missense_variant") {
-                        return 'purple';
-                    } else if (eff_type === "synonymous_variant") {
-                        return '#00FF2F';
-                    }
+                let all_ann = data.join(',');
+                if (/stop_gained|splice_donor_variant|splice_acceptor_variant|frameshift_variant/.test(all_ann)) {
+                    return '#FF0000'; // red color
+                } else if (all_ann.includes("deleterious")){
+                    return "#ff9a00"; // orange for deleterious missense_variant if using VEP annotated vcf with SIFT score
+                } else if (all_ann.includes("missense_variant")){
+                    return 'purple';
+                } else if (all_ann.includes("synonymous_variant")){
+                    return '#00FF2F'; // green for synonymous variant
+                } else {
+                    return 'blue';
                 }
-                return 'blue'
             } else {
                 return 'blue'
             }
